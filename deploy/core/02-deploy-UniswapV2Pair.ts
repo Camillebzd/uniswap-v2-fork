@@ -16,7 +16,7 @@ const deployUniswapV2Pair: DeployFunction = async function(
   log("----------------------------------------------------");
   log("Deploying UniswapV2Pair and waiting for confirmations...");
   const tokenA = await deploy("TokenA", {
-    contract: "ERC20",
+    contract: "contracts/core/test/ERC20.sol:ERC20",
     from: deployer,
     args: [expandTo18Decimals(10000n)],
     log: true,
@@ -24,7 +24,7 @@ const deployUniswapV2Pair: DeployFunction = async function(
     waitConfirmations: blockConfirmation[network.name] || 1,
   });
   const tokenB = await deploy("TokenB", {
-    contract: "ERC20",
+    contract: "contracts/core/test/ERC20.sol:ERC20",
     from: deployer,
     args: [expandTo18Decimals(10000n)],
     log: true,
@@ -33,9 +33,14 @@ const deployUniswapV2Pair: DeployFunction = async function(
   });
 
   const uniswapV2Factory = await ethers.getContract('UniswapV2Factory', deployer) as UniswapV2Factory;
+
   // /!\ The UniswapV2Pair is created from the factory so the Pair contract is not set in hardhat-deploy env...
-  await uniswapV2Factory.createPair(tokenA.address, tokenB.address);
-  const pairAddress = await uniswapV2Factory.getPair(tokenA.address, tokenB.address);
+  let pairAddress = await uniswapV2Factory.getPair(tokenA.address, tokenB.address);
+  if (pairAddress == ethers.ZeroAddress) {
+    await (await uniswapV2Factory.createPair(tokenA.address, tokenB.address)).wait();
+    pairAddress = await uniswapV2Factory.getPair(tokenA.address, tokenB.address);
+  }
+  console.log("pairAddress: ", pairAddress);
 
   // verify if not on a local chain
   if (!developmentChains.includes(network.name)) {
@@ -43,7 +48,7 @@ const deployUniswapV2Pair: DeployFunction = async function(
     await verify(tokenA.address, [expandTo18Decimals(10000n)], "contracts/core/test/ERC20.sol:ERC20");
     await verify(tokenB.address, [expandTo18Decimals(10000n)], "contracts/core/test/ERC20.sol:ERC20");
     // try that
-    await verify(pairAddress, []);
+    // await verify(pairAddress, []);
   }
 };
 

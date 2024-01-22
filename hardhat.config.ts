@@ -36,12 +36,34 @@ const NIGHTLY_RPC_URL =
 const NIGHTLY_PRIVATE_KEY =
   process.env.NIGHTLY_PRIVATE_KEY ||
   "";
+const NIGHTLY_CHAINID =
+  Number(process.env.NIGHTLY_CHAINID) ||
+  31337; // local chainId -> will raise an error
+const NIGHTLY_EXPLORER =
+  process.env.NIGHTLY_EXPLORER ||
+  "";
 
 const config: HardhatUserConfig = {
   solidity: {
     compilers: [
       {
-        version: "0.5.16"
+        version: "0.5.16",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 1000,
+          },
+        }
+      },
+      {
+        version: "0.6.6",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 1000,
+          },
+        }
+
       },
     ]
   },
@@ -70,7 +92,7 @@ const config: HardhatUserConfig = {
       accounts: [PRIVATE_KEY, SECOND_PRIVATE_KEY],
     },
     nightly: {
-      chainId: 20240109,
+      chainId: NIGHTLY_CHAINID,
       url: NIGHTLY_RPC_URL,
       accounts: [NIGHTLY_PRIVATE_KEY, PRIVATE_KEY]
     }
@@ -104,10 +126,10 @@ const config: HardhatUserConfig = {
       },
       {
         network: "nightly",
-        chainId: 20240109,
+        chainId: NIGHTLY_CHAINID,
         urls: {
-          apiURL: "https://explorer.2024-01-09.etherlink-nightly.tzalpha.net/api",
-          browserURL: "https://explorer.2024-01-09.etherlink-nightly.tzalpha.net"
+          apiURL: `${NIGHTLY_EXPLORER}api`,
+          browserURL: NIGHTLY_EXPLORER
         }
       }
     ]

@@ -22,34 +22,36 @@ const setup = deployments.createFixture(async ({deployments, getNamedAccounts, e
 });
 
 const MINIMUM_LIQUIDITY = 10n ** 3n;
+if (!developmentChains.includes(network.name)) {
+  console.log("Test are setup only for local tests...");
+} else {
+  describe('UniswapV2Pair', () => {
+    it("mint", async function () {
+      const { deployer, assistant, uniswapV2Factory, uniswapV2Pair, token0, token1 } = await setup();
 
-describe('UniswapV2Pair', () => {
-  it("mint", async function () {
-    const { deployer, assistant, uniswapV2Factory, uniswapV2Pair, token0, token1 } = await setup();
+      const token0Amount = expandTo18Decimals(1n);
+      const token1Amount = expandTo18Decimals(4n);
+      await token0.transfer(await uniswapV2Pair.getAddress(), token0Amount);
+      await token1.transfer(await uniswapV2Pair.getAddress(), token1Amount);
 
-    const token0Amount = expandTo18Decimals(1n);
-    const token1Amount = expandTo18Decimals(4n);
-    await token0.transfer(await uniswapV2Pair.getAddress(), token0Amount);
-    await token1.transfer(await uniswapV2Pair.getAddress(), token1Amount);
+      const expectedLiquidity = expandTo18Decimals(2n);
+      await expect(uniswapV2Pair.mint(deployer))
+        .to.emit(uniswapV2Pair, 'Transfer')
+        .withArgs(ethers.ZeroAddress, ethers.ZeroAddress, MINIMUM_LIQUIDITY)
+        .to.emit(uniswapV2Pair, 'Transfer')
+        .withArgs(ethers.ZeroAddress, deployer, expectedLiquidity - MINIMUM_LIQUIDITY)
+        .to.emit(uniswapV2Pair, 'Sync')
+        .withArgs(token0Amount, token1Amount)
+        .to.emit(uniswapV2Pair, 'Mint')
+        .withArgs(deployer, token0Amount, token1Amount);
 
-    const expectedLiquidity = expandTo18Decimals(2n);
-    await expect(uniswapV2Pair.mint(deployer))
-      .to.emit(uniswapV2Pair, 'Transfer')
-      .withArgs(ethers.ZeroAddress, ethers.ZeroAddress, MINIMUM_LIQUIDITY)
-      .to.emit(uniswapV2Pair, 'Transfer')
-      .withArgs(ethers.ZeroAddress, deployer, expectedLiquidity - MINIMUM_LIQUIDITY)
-      .to.emit(uniswapV2Pair, 'Sync')
-      .withArgs(token0Amount, token1Amount)
-      .to.emit(uniswapV2Pair, 'Mint')
-      .withArgs(deployer, token0Amount, token1Amount);
-
-    expect(await uniswapV2Pair.totalSupply()).to.eq(expectedLiquidity);
-    expect(await uniswapV2Pair.balanceOf(deployer)).to.eq(expectedLiquidity - MINIMUM_LIQUIDITY);
-    expect(await token0.balanceOf(await uniswapV2Pair.getAddress())).to.eq(token0Amount);
-    expect(await token1.balanceOf(await uniswapV2Pair.getAddress())).to.eq(token1Amount);
-    const reserves = await uniswapV2Pair.getReserves();
-    expect(reserves[0]).to.eq(token0Amount);
-    expect(reserves[1]).to.eq(token1Amount);
+      expect(await uniswapV2Pair.totalSupply()).to.eq(expectedLiquidity);
+      expect(await uniswapV2Pair.balanceOf(deployer)).to.eq(expectedLiquidity - MINIMUM_LIQUIDITY);
+      expect(await token0.balanceOf(await uniswapV2Pair.getAddress())).to.eq(token0Amount);
+      expect(await token1.balanceOf(await uniswapV2Pair.getAddress())).to.eq(token1Amount);
+      const reserves = await uniswapV2Pair.getReserves();
+      expect(reserves[0]).to.eq(token0Amount);
+      expect(reserves[1]).to.eq(token1Amount);
+    }).timeout(100000);
   });
-});
-
+}
