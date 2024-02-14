@@ -63,3 +63,11 @@ CI checks will run against all PRs.
 The Uniswap Interface supports swapping against, and migrating or removing liquidity from Uniswap V1. However,
 if you would like to use Uniswap V1, the Uniswap V1 interface for mainnet and testnets is accessible via IPFS gateways 
 linked from the [v1.0.0 release](https://github.com/Uniswap/uniswap-interface/releases/tag/v1.0.0).
+
+
+## Fork info:
+- factory: 0x537333a5767587df88d7e1c0650986f7b8cc587b
+- code hash: 0x9caff2cce4e27dd473f096c99efe0853916cb5f46d88b841b09a2d150fa7a518
+- routerv2: 0xfdbc9B276b49355246029Dc7C27772BFf605ffac
+- weth: 0xF6a785b301CE4F1610CE30E435AA41Ed08d77220
+- token list: https://salmon-fancy-leopard-207.mypinata.cloud/ipfs/QmVJjtkm72yTsMuk4bdUKgAJ6pNGYHYFydV6Kka7VVVTft
