@@ -48,6 +48,9 @@ function fetchClaim(account: string, chainId: ChainId): Promise<UserClaimData | 
 export function useUserClaimData(account: string | null | undefined): UserClaimData | null | undefined {
   const { chainId } = useActiveWeb3React()
 
+  // Stop the compute below because fetchClaim is not available atm
+  return undefined;
+
   const key = `${chainId}:${account}`
   const [claimInfo, setClaimInfo] = useState<{ [key: string]: UserClaimData | null }>({})
 
