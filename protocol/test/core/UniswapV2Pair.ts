@@ -12,7 +12,7 @@ const setup = deployments.createFixture(async ({deployments, getNamedAccounts, e
   const tokenA = await ethers.getContract('TokenA', deployer) as ERC20;
   const tokenB = await ethers.getContract('TokenB', deployer) as ERC20;
   const uniswapV2PairAddress = await uniswapV2Factory.getPair(await tokenA.getAddress(), await tokenB.getAddress());
-  const uniswapV2Pair = await ethers.getContractAt("IUniswapV2Pair", uniswapV2PairAddress);
+  const uniswapV2Pair = await ethers.getContractAt("contracts/core/interfaces/IUniswapV2Pair.sol:IUniswapV2Pair", uniswapV2PairAddress);
   const token0Address = await uniswapV2Pair.token0();
   const token0 = await tokenA.getAddress() === token0Address ? tokenA : tokenB;
   const token1 = await tokenA.getAddress() === token0Address ? tokenB : tokenA;
@@ -22,6 +22,8 @@ const setup = deployments.createFixture(async ({deployments, getNamedAccounts, e
 });
 
 const MINIMUM_LIQUIDITY = 10n ** 3n;
+
+// Only use for local tests to assure the good fork of the core
 if (!developmentChains.includes(network.name)) {
   console.log("Test are setup only for local tests...");
 } else {
