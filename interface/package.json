@@ -95,7 +95,7 @@
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
     "postinstall": "rm -rf ./node_modules/@uniswap/sdk && cp -r ./forks/@uniswap/sdk ./node_modules/@uniswap/sdk",
-    "build": "react-scripts build",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'"
