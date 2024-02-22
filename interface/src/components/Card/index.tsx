@@ -32,6 +32,12 @@ export const YellowCard = styled(Card)`
   font-weight: 500;
 `
 
+export const GreenCard = styled(Card)`
+  background-color: rgba(243, 132, 30, 0.05);
+  color: ${({ theme }) => theme.green2};
+  font-weight: 500;
+`
+
 export const PinkCard = styled(Card)`
   background-color: rgba(255, 0, 122, 0.03);
   color: ${({ theme }) => theme.primary1};

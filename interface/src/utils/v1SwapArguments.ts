@@ -1,5 +1,5 @@
 import { MaxUint256 } from '@ethersproject/constants'
-import { CurrencyAmount, ETHER, SwapParameters, Token, Trade, TradeOptionsDeadline, TradeType } from '@uniswap/sdk'
+import { CurrencyAmount, TEZ, SwapParameters, Token, Trade, TradeOptionsDeadline, TradeType } from '@uniswap/sdk'
 import { getTradeVersion } from '../data/V1'
 import { Version } from '../hooks/useToggledVersion'
 
@@ -23,20 +23,20 @@ export default function v1SwapArguments(
     throw new Error('too many pairs')
   }
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
-  const inputETH = trade.inputAmount.currency === ETHER
-  const outputETH = trade.outputAmount.currency === ETHER
-  if (inputETH && outputETH) throw new Error('ETHER to ETHER')
+  const inputXTZ = trade.inputAmount.currency === TEZ
+  const outputXTZ = trade.outputAmount.currency === TEZ
+  if (inputXTZ && outputXTZ) throw new Error('TEZ to TEZ')
   const minimumAmountOut = toHex(trade.minimumAmountOut(options.allowedSlippage))
   const maximumAmountIn = toHex(trade.maximumAmountIn(options.allowedSlippage))
   const deadline = `0x${options.deadline.toString(16)}`
   if (isExactIn) {
-    if (inputETH) {
+    if (inputXTZ) {
       return {
         methodName: 'ethToTokenTransferInput',
         args: [minimumAmountOut, deadline, options.recipient],
         value: maximumAmountIn
       }
-    } else if (outputETH) {
+    } else if (outputXTZ) {
       return {
         methodName: 'tokenToEthTransferInput',
         args: [maximumAmountIn, minimumAmountOut, deadline, options.recipient],
@@ -55,13 +55,13 @@ export default function v1SwapArguments(
       }
     }
   } else {
-    if (inputETH) {
+    if (inputXTZ) {
       return {
         methodName: 'ethToTokenTransferOutput',
         args: [minimumAmountOut, deadline, options.recipient],
         value: maximumAmountIn
       }
-    } else if (outputETH) {
+    } else if (outputXTZ) {
       return {
         methodName: 'tokenToEthTransferOutput',
         args: [minimumAmountOut, maximumAmountIn, deadline, options.recipient],

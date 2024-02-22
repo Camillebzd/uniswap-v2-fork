@@ -5,7 +5,7 @@ import { Fraction } from './fraction';
 export declare class CurrencyAmount extends Fraction {
     readonly currency: Currency;
     /**
-     * Helper that calls the constructor with the ETHER currency
+     * Helper that calls the constructor with the TEZ currency
      * @param amount ether amount in wei
      */
     static ether(amount: BigintIsh): CurrencyAmount;

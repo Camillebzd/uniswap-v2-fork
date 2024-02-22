@@ -358,7 +358,7 @@ function sortedInsert(items, add, maxSize, comparator) {
 
 var Currency =
 /**
- * Constructs an instance of the base class `Currency`. The only instance of the base class `Currency` is `Currency.ETHER`.
+ * Constructs an instance of the base class `Currency`. The only instance of the base class `Currency` is `Currency.TEZ`.
  * @param decimals decimals of the currency
  * @param symbol symbol of the currency
  * @param name of the currency
@@ -373,8 +373,8 @@ function Currency(decimals, symbol, name) {
  * The only instance of the base class `Currency`.
  */
 
-Currency.ETHER = /*#__PURE__*/new Currency(18, 'ETH', 'Ether');
-var ETHER = Currency.ETHER;
+Currency.TEZ = /*#__PURE__*/new Currency(18, 'XTZ', 'Tez');
+var TEZ = Currency.TEZ;
 
 var _WETH;
 /**
@@ -578,13 +578,13 @@ var CurrencyAmount = /*#__PURE__*/function (_Fraction) {
     return _this;
   }
   /**
-   * Helper that calls the constructor with the ETHER currency
+   * Helper that calls the constructor with the TEZ currency
    * @param amount ether amount in wei
    */
 
 
   CurrencyAmount.ether = function ether(amount) {
-    return new CurrencyAmount(ETHER, amount);
+    return new CurrencyAmount(TEZ, amount);
   };
 
   var _proto = CurrencyAmount.prototype;
@@ -958,8 +958,8 @@ var Route = /*#__PURE__*/function () {
     !pairs.every(function (pair) {
       return pair.chainId === pairs[0].chainId;
     }) ?  invariant(false, 'CHAIN_IDS')  : void 0;
-    !(input instanceof Token && pairs[0].involvesToken(input) || input === ETHER && pairs[0].involvesToken(WETH[pairs[0].chainId])) ?  invariant(false, 'INPUT')  : void 0;
-    !(typeof output === 'undefined' || output instanceof Token && pairs[pairs.length - 1].involvesToken(output) || output === ETHER && pairs[pairs.length - 1].involvesToken(WETH[pairs[0].chainId])) ?  invariant(false, 'OUTPUT')  : void 0;
+    !(input instanceof Token && pairs[0].involvesToken(input) || input === TEZ && pairs[0].involvesToken(WETH[pairs[0].chainId])) ?  invariant(false, 'INPUT')  : void 0;
+    !(typeof output === 'undefined' || output instanceof Token && pairs[pairs.length - 1].involvesToken(output) || output === TEZ && pairs[pairs.length - 1].involvesToken(WETH[pairs[0].chainId])) ?  invariant(false, 'OUTPUT')  : void 0;
     var path = [input instanceof Token ? input : WETH[pairs[0].chainId]];
 
     for (var _iterator = _createForOfIteratorHelperLoose(pairs.entries()), _step; !(_step = _iterator()).done;) {
@@ -1082,19 +1082,19 @@ function tradeComparator(a, b) {
 }
 /**
  * Given a currency amount and a chain ID, returns the equivalent representation as the token amount.
- * In other words, if the currency is ETHER, returns the WETH token amount for the given chain. Otherwise, returns
+ * In other words, if the currency is TEZ, returns the WETH token amount for the given chain. Otherwise, returns
  * the input currency amount.
  */
 
 function wrappedAmount(currencyAmount, chainId) {
   if (currencyAmount instanceof TokenAmount) return currencyAmount;
-  if (currencyAmount.currency === ETHER) return new TokenAmount(WETH[chainId], currencyAmount.raw);
+  if (currencyAmount.currency === TEZ) return new TokenAmount(WETH[chainId], currencyAmount.raw);
     invariant(false, 'CURRENCY')  ;
 }
 
 function wrappedCurrency(currency, chainId) {
   if (currency instanceof Token) return currency;
-  if (currency === ETHER) return WETH[chainId];
+  if (currency === TEZ) return WETH[chainId];
     invariant(false, 'CURRENCY')  ;
 }
 /**
@@ -1140,8 +1140,8 @@ var Trade = /*#__PURE__*/function () {
 
     this.route = route;
     this.tradeType = tradeType;
-    this.inputAmount = tradeType === exports.TradeType.EXACT_INPUT ? amount : route.input === ETHER ? CurrencyAmount.ether(amounts[0].raw) : amounts[0];
-    this.outputAmount = tradeType === exports.TradeType.EXACT_OUTPUT ? amount : route.output === ETHER ? CurrencyAmount.ether(amounts[amounts.length - 1].raw) : amounts[amounts.length - 1];
+    this.inputAmount = tradeType === exports.TradeType.EXACT_INPUT ? amount : route.input === TEZ ? CurrencyAmount.ether(amounts[0].raw) : amounts[0];
+    this.outputAmount = tradeType === exports.TradeType.EXACT_OUTPUT ? amount : route.output === TEZ ? CurrencyAmount.ether(amounts[amounts.length - 1].raw) : amounts[amounts.length - 1];
     this.executionPrice = new Price(this.inputAmount.currency, this.outputAmount.currency, this.inputAmount.raw, this.outputAmount.raw);
     this.nextMidPrice = Price.fromRoute(new Route(nextPairs, route.input));
     this.priceImpact = computePriceImpact(route.midPrice, this.inputAmount, this.outputAmount);
@@ -1389,8 +1389,8 @@ var Router = /*#__PURE__*/function () {
 
 
   Router.swapCallParameters = function swapCallParameters(trade, options) {
-    var etherIn = trade.inputAmount.currency === ETHER;
-    var etherOut = trade.outputAmount.currency === ETHER; // the router does not support both ether in and out
+    var etherIn = trade.inputAmount.currency === TEZ;
+    var etherOut = trade.outputAmount.currency === TEZ; // the router does not support both ether in and out
 
     !!(etherIn && etherOut) ?  invariant(false, 'ETHER_IN_OUT')  : void 0;
     !(!('ttl' in options) || options.ttl > 0) ?  invariant(false, 'TTL')  : void 0;
@@ -1573,7 +1573,7 @@ var Fetcher = /*#__PURE__*/function () {
 exports.JSBI = JSBI;
 exports.Currency = Currency;
 exports.CurrencyAmount = CurrencyAmount;
-exports.ETHER = ETHER;
+exports.TEZ = TEZ;
 exports.FACTORY_ADDRESS = FACTORY_ADDRESS;
 exports.Fetcher = Fetcher;
 exports.Fraction = Fraction;

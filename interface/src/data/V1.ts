@@ -4,7 +4,7 @@ import {
   Currency,
   CurrencyAmount,
   currencyEquals,
-  ETHER,
+  TEZ,
   JSBI,
   Pair,
   Percent,
@@ -21,7 +21,7 @@ import { useAllTokens } from '../hooks/Tokens'
 import { useV1FactoryContract } from '../hooks/useContract'
 import { Version } from '../hooks/useToggledVersion'
 import { NEVER_RELOAD, useSingleCallResult, useSingleContractMultipleData } from '../state/multicall/hooks'
-import { useETHBalances, useTokenBalance, useTokenBalances } from '../state/wallet/hooks'
+import { useXTZBalances, useTokenBalance, useTokenBalances } from '../state/wallet/hooks'
 
 export function useV1ExchangeAddress(tokenAddress?: string): string | undefined {
   const contract = useV1FactoryContract()
@@ -42,7 +42,7 @@ function useMockV1Pair(inputCurrency?: Currency): MockV1Pair | undefined {
   const isWETH = Boolean(token && token.equals(WETH[token.chainId]))
   const v1PairAddress = useV1ExchangeAddress(isWETH ? undefined : token?.address)
   const tokenBalance = useTokenBalance(v1PairAddress, token)
-  const ETHBalance = useETHBalances([v1PairAddress])[v1PairAddress ?? '']
+  const ETHBalance = useXTZBalances([v1PairAddress])[v1PairAddress ?? '']
 
   return useMemo(
     () =>
@@ -108,14 +108,14 @@ export function useV1Trade(
   const inputPair = useMockV1Pair(inputCurrency)
   const outputPair = useMockV1Pair(outputCurrency)
 
-  const inputIsETH = inputCurrency === ETHER
-  const outputIsETH = outputCurrency === ETHER
+  const inputIsXTZ = inputCurrency === TEZ
+  const outputIsXTZ = outputCurrency === TEZ
 
   // construct a direct or through ETH v1 route
   let pairs: Pair[] = []
-  if (inputIsETH && outputPair) {
+  if (inputIsXTZ && outputPair) {
     pairs = [outputPair]
-  } else if (outputIsETH && inputPair) {
+  } else if (outputIsXTZ && inputPair) {
     pairs = [inputPair]
   }
   // if neither are ETH, it's token-to-token (if they both exist)

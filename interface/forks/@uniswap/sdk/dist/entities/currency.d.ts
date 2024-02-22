@@ -10,14 +10,14 @@ export declare class Currency {
     /**
      * The only instance of the base class `Currency`.
      */
-    static readonly ETHER: Currency;
+    static readonly TEZ: Currency;
     /**
-     * Constructs an instance of the base class `Currency`. The only instance of the base class `Currency` is `Currency.ETHER`.
+     * Constructs an instance of the base class `Currency`. The only instance of the base class `Currency` is `Currency.TEZ`.
      * @param decimals decimals of the currency
      * @param symbol symbol of the currency
      * @param name of the currency
      */
     protected constructor(decimals: number, symbol?: string, name?: string);
 }
-declare const ETHER: Currency;
-export { ETHER };
+declare const TEZ: Currency;
+export { TEZ };
