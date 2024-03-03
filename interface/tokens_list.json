@@ -34,7 +34,7 @@
   "tokens":[
     {
       "name":"USDCoin",
-      "address":"0x0856b832aDeD7E34CF685160D53c12Bd96513448",
+      "address":"0x07648428EF73dde0ba38D3775C6aaDc48fD20d9D",
       "symbol":"USDC",
       "tags":[
         "bases"
@@ -45,7 +45,7 @@
     },
     {
       "name":"Tether USD",
-      "address":"0xB018f181E61eA2c5c223d15CF78D9ed77Bcc57b0",
+      "address":"0x42b2ae83596fA9f4D8D9958f571a10934ED5B2cc",
       "symbol":"USDT",
       "tags":[
         "bases"
@@ -56,7 +56,7 @@
     },
     {
       "name": "Dai Stablecoin",
-      "address": "0x217271A8674a5362F5221dD040f7c44C28f2c046",
+      "address": "0xb8f26e0c5cc99Cdd8A42Ae8A8BaEbB20ecBD1C99",
       "symbol": "DAI",
       "tags": [
         "bases"

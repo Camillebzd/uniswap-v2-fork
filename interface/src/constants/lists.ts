@@ -1,6 +1,6 @@
 // the Uniswap Default token list lives here
 // export const DEFAULT_TOKEN_LIST_URL = 'tokens.uniswap.eth'
-export const DEFAULT_TOKEN_LIST_URL = 'https://salmon-fancy-leopard-207.mypinata.cloud/ipfs/QmVJjtkm72yTsMuk4bdUKgAJ6pNGYHYFydV6Kka7VVVTft'
+export const DEFAULT_TOKEN_LIST_URL = 'https://gateway.pinata.cloud/ipfs/QmRPFf3fkqaknRZWyLF4YCNF61FK9pYuHRWxg648Z9cwx4'
 
 export const DEFAULT_LIST_OF_LISTS: string[] = [
   DEFAULT_TOKEN_LIST_URL,
