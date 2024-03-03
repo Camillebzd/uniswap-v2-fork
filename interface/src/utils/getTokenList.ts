@@ -36,7 +36,6 @@ export default async function getTokenList(
     urls = uriToHttp(`${translatedUri}${parsedENS.ensPath ?? ''}`)
   } else {
     urls = uriToHttp(listUrl)
-    console.log("URLS: ", urls);
   }
   for (let i = 0; i < urls.length; i++) {
     const url = urls[i]
@@ -49,7 +48,6 @@ export default async function getTokenList(
       if (isLast) throw new Error(`Failed to download list ${listUrl}`)
       continue
     }
-    console.log("no error in fetch: ", response);
 
     if (!response.ok) {
       if (isLast) throw new Error(`Failed to download list ${listUrl}`)
