@@ -67,14 +67,14 @@
     },
     {
       "name":"Wrapped Ether",
-      "address":"0xF6a785b301CE4F1610CE30E435AA41Ed08d77220",
-      "symbol":"WETH",
+      "address":"0x340Fa96ACF0b8D36828e1D8963CdF3E95c58ed06",
+      "symbol":"WXTZ",
       "tags":[
         "bases"
       ],
       "decimals":18,
       "chainId": 128123,
-      "logoURI":"https://s3.amazonaws.com/roll-token.tryroll.com/WETH/8b5214dc-7b7e-4e04-89de-f0f4ae05a3b6"
+      "logoURI":"https://raw.githubusercontent.com/tachyswap/tokenlist/main/token/addresses/0x340Fa96ACF0b8D36828e1D8963CdF3E95c58ed06/logo.png"
     }
   ]
 }
