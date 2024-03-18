@@ -1,6 +1,6 @@
 # Uniswap v2 fork
 
-This is a fork of [UniswapV2]("https://github.com/Uniswap") contracts (core and periphery) using hardhat and hardhat-deploy.
+This is a fork of [UniswapV2]("https://github.com/Uniswap") contracts (core and periphery) using hardhat and [hardhat-deploy](https://github.com/wighawag/hardhat-deploy).
 
 First things to do after cloning is to install dependencies:
 ```
@@ -76,7 +76,7 @@ You can finally run the command:
 npx hardhat deploy --tags UniswapV2Router02 --network <your-network>
 ```
 
-## Set up the pair
+## Set up the pair (optional)
 
 You should have the protocol itself deployed. You now need to create a pair from the factory.
 
