@@ -59,7 +59,7 @@ The interface will not work on other networks.
 - routerv2: 0xfdbc9B276b49355246029Dc7C27772BFf605ffac
 - weth: 0xF6a785b301CE4F1610CE30E435AA41Ed08d77220
 - multicall: 0x2Fafad9c3100BBEd839ACb9534CA7955DB112C93
-- token list: https://salmon-fancy-leopard-207.mypinata.cloud/ipfs/QmVJjtkm72yTsMuk4bdUKgAJ6pNGYHYFydV6Kka7VVVTft
+- token list: https://raw.githubusercontent.com/Camillebzd/uniswap-v2-fork/main/interface/tokens_list.json (the token list in this repo heberged by github)
 
 1. You should go in the `forks/` folder that contains the Uniswap sdk part and add these values so the sdk use your contracts.
 2. If you want to add a chain, you will have to modify and re deploy a lot of stuff (see the list just above):
