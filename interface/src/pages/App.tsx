@@ -17,10 +17,10 @@ import {
   RedirectOldAddLiquidityPathStructure,
   RedirectToAddLiquidity
 } from './AddLiquidity/redirects'
-import Earn from './Earn'
-import Manage from './Earn/Manage'
-import MigrateV1 from './MigrateV1'
-import MigrateV1Exchange from './MigrateV1/MigrateV1Exchange'
+// import Earn from './Earn'
+// import Manage from './Earn/Manage'
+// import MigrateV1 from './MigrateV1'
+// import MigrateV1Exchange from './MigrateV1/MigrateV1Exchange'
 import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
@@ -29,8 +29,8 @@ import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redir
 import Swap from './Swap'
 import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 
-import Vote from './Vote'
-import VotePage from './Vote/VotePage'
+// import Vote from './Vote'
+// import VotePage from './Vote/VotePage'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -96,8 +96,8 @@ export default function App() {
               <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
               <Route exact strict path="/find" component={PoolFinder} />
               <Route exact strict path="/pool" component={Pool} />
-              <Route exact strict path="/uni" component={Earn} />
-              <Route exact strict path="/vote" component={Vote} />
+              {/* <Route exact strict path="/uni" component={Earn} />
+              <Route exact strict path="/vote" component={Vote} /> */}
               <Route exact strict path="/create" component={RedirectToAddLiquidity} />
               <Route exact path="/add" component={AddLiquidity} />
               <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
@@ -108,10 +108,10 @@ export default function App() {
               <Route exact strict path="/remove/v1/:address" component={RemoveV1Exchange} />
               <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
               <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
-              <Route exact strict path="/migrate/v1" component={MigrateV1} />
+              {/* <Route exact strict path="/migrate/v1" component={MigrateV1} />
               <Route exact strict path="/migrate/v1/:address" component={MigrateV1Exchange} />
               <Route exact strict path="/uni/:currencyIdA/:currencyIdB" component={Manage} />
-              <Route exact strict path="/vote/:id" component={VotePage} />
+              <Route exact strict path="/vote/:id" component={VotePage} /> */}
               <Route component={RedirectPathToSwapOnly} />
             </Switch>
           </Web3ReactManager>
