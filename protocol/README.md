@@ -1,6 +1,6 @@
 # Uniswap v2 fork
 
-This is a fork of [UniswapV2]("https://github.com/Uniswap") contracts (core and periphery) using hardhat and [hardhat-deploy](https://github.com/wighawag/hardhat-deploy).
+This repository contains a fork of [UniswapV2]("https://github.com/Uniswap") contracts (core and periphery) using hardhat and hardhat-deploy.
 
 First things to do after cloning is to install dependencies:
 ```
@@ -76,7 +76,7 @@ You can finally run the command:
 npx hardhat deploy --tags UniswapV2Router02 --network <your-network>
 ```
 
-## Set up the pair (optional)
+## 1. Set up the pair
 
 You should have the protocol itself deployed. You now need to create a pair from the factory.
 
@@ -87,7 +87,7 @@ npx hardhat deploy --tags UniswapV2Pair --network <your-network>
 
 **Note:** if you want to use 2 existing tokens for the pair, you have to modify the `deploy/core/02-deploy-UniswapV2Pair.ts` script.
 
-## Tests
+## 2., 3. and 4. Tests
 
 If you want to launch the tests, you can run:
 ```
@@ -97,4 +97,22 @@ npx hardhat test test/periphery/UniswapV2Router02.ts --network <your-network>
 **Note:** you can the launch each test individually by using the `--grep` flag and the name of the test after. Example:
 ```
 npx hardhat test test/periphery/UniswapV2Router02.ts --network <your-network> --grep "addLiquidity"
+```
+
+## NEW. Scenario create pair + add liquidity in one tx
+
+Instead of setting up the pair, we will just deploy the tokens and then let the router with `addLiquidity` both deploys the pair and adds liquidity.
+
+**Note:** Remember that you still have to deploy the factory and the router before you can use it!
+
+Deploy the 2 tokens:
+```
+npx hardhat deploy --tags Tokens --network <your-network>
+```
+
+By default the test is disabled, you have to remove the 'x' in front of the test line 286 in `test/periphery/UniswapV2Router02.ts`.
+
+Then you can run the script like so:
+```
+npx hardhat test test/periphery/UniswapV2Router02.ts --network <your-network> --grep "SPECIAL TEST"
 ```
