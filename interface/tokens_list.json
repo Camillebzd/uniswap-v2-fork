@@ -1,8 +1,8 @@
 {
   "name":"Etherlink testnet",
-  "timestamp":"2024-02-13T14:48:12.907Z",
+  "timestamp":"2024-08-18T17:00:00.000Z",
   "version":{
-    "major":1,
+    "major":2,
     "minor":0,
     "patch":0
   },
@@ -33,41 +33,30 @@
   ],
   "tokens":[
     {
-      "name":"USDCoin",
-      "address":"0x07648428EF73dde0ba38D3775C6aaDc48fD20d9D",
+      "name":"USD Coin",
+      "address":"0xa7c9092A5D2C3663B7C5F714dbA806d02d62B58a",
       "symbol":"USDC",
       "tags":[
         "bases"
       ],
-      "decimals":6,
+      "decimals": 18,
       "chainId": 128123,
       "logoURI":"https://s3.amazonaws.com/roll-token.tryroll.com/USDC/46907d92-3d53-4302-8342-1b260faf376d"
     },
     {
       "name":"Tether USD",
-      "address":"0x42b2ae83596fA9f4D8D9958f571a10934ED5B2cc",
+      "address":"0xD21B917D2f4a4a8E3D12892160BFFd8f4cd72d4F",
       "symbol":"USDT",
       "tags":[
         "bases"
       ],
-      "decimals":6,
+      "decimals": 18,
       "chainId": 128123,
       "logoURI":"https://s3.amazonaws.com/roll-token.tryroll.com/USDT/2a996945-ceb5-4d18-8455-4af5e4d1d9d5"
     },
     {
-      "name": "Dai Stablecoin",
-      "address": "0xb8f26e0c5cc99Cdd8A42Ae8A8BaEbB20ecBD1C99",
-      "symbol": "DAI",
-      "tags": [
-        "bases"
-      ],
-      "decimals": 18,
-      "chainId": 128123,
-      "logoURI": "https://s3.amazonaws.com/roll-token.tryroll.com/DAI/8405fc15-2269-4228-b69e-79a6717eb15b"
-    },
-    {
-      "name":"Wrapped Ether",
-      "address":"0x340Fa96ACF0b8D36828e1D8963CdF3E95c58ed06",
+      "name":"Wrapped XTZ",
+      "address":"0xB1Ea698633d57705e93b0E40c1077d46CD6A51d8",
       "symbol":"WXTZ",
       "tags":[
         "bases"
