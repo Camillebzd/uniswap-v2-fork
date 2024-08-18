@@ -9,10 +9,9 @@ import { WrappedTokenInfo } from '../../state/lists/hooks'
 import Logo from '../Logo'
 
 const tokenURLs: {[key: string]: string} = {
-  "0x07648428EF73dde0ba38D3775C6aaDc48fD20d9D": "https://s3.amazonaws.com/roll-token.tryroll.com/USDC/46907d92-3d53-4302-8342-1b260faf376d", // USDC
-  "0x42b2ae83596fA9f4D8D9958f571a10934ED5B2cc": "https://s3.amazonaws.com/roll-token.tryroll.com/USDT/2a996945-ceb5-4d18-8455-4af5e4d1d9d5", // USDT
-  "0xb8f26e0c5cc99Cdd8A42Ae8A8BaEbB20ecBD1C99": "https://s3.amazonaws.com/roll-token.tryroll.com/DAI/8405fc15-2269-4228-b69e-79a6717eb15b", // DAI
-  "0xF6a785b301CE4F1610CE30E435AA41Ed08d77220": "https://s3.amazonaws.com/roll-token.tryroll.com/WETH/8b5214dc-7b7e-4e04-89de-f0f4ae05a3b6" // WETH
+  "0xa7c9092A5D2C3663B7C5F714dbA806d02d62B58a": "https://s3.amazonaws.com/roll-token.tryroll.com/USDC/46907d92-3d53-4302-8342-1b260faf376d", // USDC
+  "0xD21B917D2f4a4a8E3D12892160BFFd8f4cd72d4F": "https://s3.amazonaws.com/roll-token.tryroll.com/USDT/2a996945-ceb5-4d18-8455-4af5e4d1d9d5", // USDT
+  "0xB1Ea698633d57705e93b0E40c1077d46CD6A51d8": "https://raw.githubusercontent.com/tachyswap/tokenlist/main/token/addresses/0x340Fa96ACF0b8D36828e1D8963CdF3E95c58ed06/logo.png", // WXTZ
 }
 
 const getTokenLogoURL = (address: string) =>
